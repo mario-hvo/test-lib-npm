@@ -1,0 +1,19 @@
+{
+  "name": "snappable",
+  "version": "0.8.0",
+  "type": "module",
+  "main": "./dist/snappable.js",
+  "module": "./dist/snappable.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "build": "vite build",
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "vitest": "^1.0.0"
+  }
+}

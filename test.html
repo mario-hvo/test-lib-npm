@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Snappable Test</title>
+</head>
+<body>
+  <canvas id="galaxy" width="800" height="600" style="background:#000"></canvas>
+
+  <script type="module">
+    import Snappable from './dist/snappable.js';
+
+    const canvas = document.getElementById('galaxy');
+    const lib = new Snappable(canvas);
+    lib.enableSnapping();
+
+    console.log(lib.snapToGrid(123, 456)); // Sollte gerundet ausgeben
+  </script>
+</body>
+</html>

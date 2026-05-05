@@ -1,0 +1,31 @@
+# Datei: .github/workflows/test-and-build.yml
+# Zeile 1: Kommentar – alles nach # wird ignoriert
+name: Test & Build          # Name, der oben in GitHub Actions angezeigt wird
+
+on:                         # Wann soll der Roboter loslaufen?
+  push:                     # Bei jedem Push auf main
+    branches: [ main ]
+  pull_request:             # Auch bei Pull Requests
+    branches: [ main ]
+
+jobs:                       # Was soll der Roboter machen?
+  test:                     # Name des Jobs
+    runs-on: ubuntu-latest  # Auf welchem Computer soll er laufen? (Linux)
+
+    steps:                  # Schritte, die nacheinander ausgeführt werden
+    - name: Checkout Code   # Schritt 1: Code herunterladen
+      uses: actions/checkout@v4   # Fertiges Tool von GitHub
+
+    - name: Setup Node.js   # Schritt 2: Node.js installieren (damit npm funktioniert)
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20     # Wir benutzen Node Version 20 (aktuell und stabil)
+
+    - name: Install Dependencies   # Schritt 3: Alle Pakete installieren
+      run: npm ci                  # "ci" = clean install, sehr schnell und sicher
+
+    - name: Run Tests       # Schritt 4: Unsere Tests ausführen
+      run: npm test
+
+    - name: Build Library   # Schritt 5: Die Bibliothek bauen
+      run: npm run build
